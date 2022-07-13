@@ -101,6 +101,18 @@
   "KOODI_MUOKKAA_SIVU_TITLE": {
     "defaultMessage": "Muokkaa koodia"
   },
+  "KOODI_POISTA_DESCRIPTION": {
+    "defaultMessage": "Koodi ja kaikki sen suhteet poistetaan"
+  },
+  "KOODI_POISTA_OK_MESSAGE": {
+    "defaultMessage": "Koodi on poistettu"
+  },
+  "KOODI_POISTA_OK_TITLE": {
+    "defaultMessage": "Koodi poistettiin onnistuneesti."
+  },
+  "KOODI_POISTA_TITLE": {
+    "defaultMessage": "Poista koodi"
+  },
   "KOODI_TALLENNUS_MESSAGE": {
     "defaultMessage": "Tallennettiin koodi uri:lla {koodiUri}"
   },
@@ -241,6 +253,9 @@
   },
   "TAULUKKO_VOIMASSA_LOPPU_PVM_OTSIKKO": {
     "defaultMessage": "Voimassa asti"
+  },
+  "VAHVISTA_POISTO": {
+    "defaultMessage": "Vahvista poisto"
   },
   "VERSIO_DROPDOWN_LABEL": {
     "defaultMessage": "Versio {versio}"

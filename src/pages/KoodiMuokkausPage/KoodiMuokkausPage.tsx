@@ -10,7 +10,7 @@ import {
 } from '../../components/Containers';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { CrumbTrail } from '../../components/CrumbTrail';
-import { fetchPageKoodi, updateKoodi, createKoodi } from '../../api/koodi';
+import { fetchPageKoodi, updateKoodi, createKoodi, deleteKoodi } from '../../api/koodi';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { Koodi } from '../../types';
 import { Loading } from '../../components/Loading';
@@ -18,6 +18,7 @@ import Input from '@opetushallitus/virkailija-ui-components/Input';
 import { Footer } from '../../components/Footer';
 import { DatePickerController, InputArrayController } from '../../components/controllers';
 import { success } from '../../components/Notification';
+import RemovalConfirmationDialog from '../../components/Footer/RemovalConfirmationDialog';
 
 const successNotification = (koodiUri: string) => {
     success({
@@ -34,6 +35,13 @@ const successNotification = (koodiUri: string) => {
                 values={{ koodiUri }}
             />
         ),
+    });
+};
+
+const deleteSuccess = () => {
+    success({
+        title: <FormattedMessage id={'KOODI_POISTA_OK_TITLE'} defaultMessage={'Koodi poistettiin onnistuneesti.'} />,
+        message: <FormattedMessage id={'KOODI_POISTA_OK_MESSAGE'} defaultMessage={'Koodi on poistettu'} />,
     });
 };
 
@@ -75,15 +83,20 @@ export const KoodiMuokkausPage: React.FC = () => {
             navigate(`/koodi/view/${data.koodiUri}/${data.versio}`);
         }
     };
-    return (loading && <Loading />) || <KoodiMuokkausPageComponent {...formReturn} save={save} />;
+    const remove = async (koodi: Koodi) => {
+        setLoading(true);
+        if (await deleteKoodi(koodi)) {
+            deleteSuccess();
+            navigate(`/koodisto/view/${koodi.koodistoUri}`);
+        } else {
+            setLoading(false);
+        }
+    };
+    return (loading && <Loading />) || <KoodiMuokkausPageComponent {...formReturn} save={save} remove={remove} />;
 };
-const KoodiMuokkausPageComponent: React.FC<{ save: (a: Koodi) => void } & UseFormReturn<Koodi>> = ({
-    register,
-    handleSubmit,
-    save,
-    control,
-    getValues,
-}) => {
+const KoodiMuokkausPageComponent: React.FC<
+    { save: (a: Koodi) => void; remove: (koodi: Koodi) => void } & UseFormReturn<Koodi>
+> = ({ register, handleSubmit, save, remove, control, getValues }) => {
     const { koodiUri, koodiVersio } = useParams();
     const { formatMessage } = useIntl();
     return (
@@ -156,7 +169,31 @@ const KoodiMuokkausPageComponent: React.FC<{ save: (a: Koodi) => void } & UseFor
                 returnPath={(koodiUri && `/koodi/view/${koodiUri}/${koodiVersio}`) || '/'}
                 save={handleSubmit((a) => save(a))}
                 localisationPrefix={'KOODI'}
-            />
+            >
+                {(close: () => void) => (
+                    <RemovalConfirmationDialog
+                        action={() => {
+                            remove(getValues());
+                            close();
+                        }}
+                        close={close}
+                        msgkey={{ id: 'KOODI_POISTA_CONFIRMATION', defaultMessage: 'Kyllä, poista koodi lopullisesti' }}
+                    >
+                        <>
+                            <FormattedMessage
+                                id={'KOODI_POISTA_TITLE'}
+                                defaultMessage={'Poista koodi'}
+                                tagName={'h2'}
+                            />
+                            <FormattedMessage
+                                id={'KOODI_POISTA_DESCRIPTION'}
+                                defaultMessage={'Koodi ja kaikki sen suhteet poistetaan'}
+                                tagName={'p'}
+                            />
+                        </>
+                    </RemovalConfirmationDialog>
+                )}
+            </Footer>
         </>
     );
 };

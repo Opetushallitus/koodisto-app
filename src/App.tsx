@@ -3,7 +3,7 @@ import { KoodistoTablePage } from './pages/KoodistoTablePage';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Notification } from './components/Notification';
-import { KoodistoPage, KoodistoMuokkausPage } from './pages/KoodistoPage';
+import { KoodistoPage, KoodistoMuokkausPage, KoodistoRedirectPage } from './pages/KoodistoPage';
 import KoodiPage from './pages/KoodiPage';
 import { Loading } from './components/Loading';
 import { KoodiMuokkausPage } from './pages/KoodiMuokkausPage';
@@ -26,6 +26,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route path={'/'} element={<KoodistoTablePage />} />
                         <Route path={'/koodistoRyhma/:koodistoRyhmaUri'} element={<KoodistoTablePage />} />
+                        <Route path="/koodisto/view/:koodistoUri" element={<KoodistoRedirectPage />} />
                         <Route path="/koodisto/view/:koodistoUri/:versio" element={<KoodistoPage />} />
                         <Route path="/koodisto/edit/:koodistoUri/:versio" element={<KoodistoMuokkausPage />} />
                         <Route path="/koodisto/edit" element={<KoodistoMuokkausPage />} />

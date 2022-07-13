@@ -69,6 +69,12 @@ export const createKoodi = async (koodi: Koodi): Promise<Koodi | undefined> => {
         axiosFunc: axios.post,
     });
 };
+export const deleteKoodi = async (koodi: Koodi): Promise<boolean | undefined> => {
+    return errorHandlingWrapper(async () => {
+        const { status } = await axios.delete(`${API_INTERNAL_PATH}/koodi/${koodi.koodiUri}/${koodi.versio}`);
+        return status === 204;
+    });
+};
 const upsertKoodi = async <X>({
     koodi,
     mapper,
