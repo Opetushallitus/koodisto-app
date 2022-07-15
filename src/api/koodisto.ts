@@ -240,3 +240,12 @@ export const fetchPageKoodisto = async ({
         }
     });
 };
+
+export const deleteKoodisto = async (koodisto: PageKoodisto): Promise<boolean | undefined> => {
+    return errorHandlingWrapper(async () => {
+        const { status } = await axios.delete(
+            `${API_INTERNAL_PATH}/koodisto/${koodisto.koodistoUri}/${koodisto.versio}`
+        );
+        return status === 204;
+    });
+};

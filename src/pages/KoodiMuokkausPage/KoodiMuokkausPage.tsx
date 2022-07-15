@@ -15,10 +15,9 @@ import { useForm, UseFormReturn } from 'react-hook-form';
 import { Koodi } from '../../types';
 import { Loading } from '../../components/Loading';
 import Input from '@opetushallitus/virkailija-ui-components/Input';
-import { Footer } from '../../components/Footer';
+import { Footer, ConfirmationDialog } from '../../components/Footer';
 import { DatePickerController, InputArrayController } from '../../components/controllers';
 import { success } from '../../components/Notification';
-import RemovalConfirmationDialog from '../../components/Footer/RemovalConfirmationDialog';
 
 const successNotification = (koodiUri: string) => {
     success({
@@ -169,9 +168,8 @@ const KoodiMuokkausPageComponent: React.FC<
                 returnPath={(koodiUri && `/koodi/view/${koodiUri}/${koodiVersio}`) || '/'}
                 save={handleSubmit((a) => save(a))}
                 localisationPrefix={'KOODI'}
-            >
-                {(close: () => void) => (
-                    <RemovalConfirmationDialog
+                removeDialog={(close: () => void) => (
+                    <ConfirmationDialog
                         action={() => {
                             remove(getValues());
                             close();
@@ -191,9 +189,9 @@ const KoodiMuokkausPageComponent: React.FC<
                                 tagName={'p'}
                             />
                         </>
-                    </RemovalConfirmationDialog>
+                    </ConfirmationDialog>
                 )}
-            </Footer>
+            />
         </>
     );
 };

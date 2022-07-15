@@ -44,6 +44,24 @@
   "KOODISTO_MUOKKAA_SIVU_TITLE": {
     "defaultMessage": "Muokkaa koodistoa"
   },
+  "KOODISTO_POISTA_DESCRIPTION": {
+    "defaultMessage": "Koodisto sisältää:"
+  },
+  "KOODISTO_POISTA_OK_MESSAGE": {
+    "defaultMessage": "Koodisto on poistettu"
+  },
+  "KOODISTO_POISTA_OK_TITLE": {
+    "defaultMessage": "Koodisto poistettiin onnistuneesti."
+  },
+  "KOODISTO_POISTA_SISALTAA_KOODIA": {
+    "defaultMessage": "{count} koodia"
+  },
+  "KOODISTO_POISTA_SISALTAA_SUHTEITA": {
+    "defaultMessage": "{count} koodistojen välistä suhdetta"
+  },
+  "KOODISTO_POISTA_TITLE": {
+    "defaultMessage": "Poista koodisto"
+  },
   "KOODISTO_RYHMA_EN": {
     "defaultMessage": "EN"
   },

@@ -23,7 +23,7 @@ const ContentWrapper = styled.div`
     }
 `;
 
-const RemovalConfirmationDialog: React.FC<{
+export const ConfirmationDialog: React.FC<{
     close?: () => void;
     action: () => void;
     msgkey: MessageDescriptor;
@@ -49,5 +49,3 @@ const RemovalConfirmationDialog: React.FC<{
         </ContentWrapper>
     );
 };
-
-export default RemovalConfirmationDialog;

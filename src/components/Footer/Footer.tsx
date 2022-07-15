@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FooterContainer, FooterLeftContainer, FooterRightContainer } from '../Containers';
 import Button from '@opetushallitus/virkailija-ui-components/Button';
 import { FormattedMessage } from 'react-intl';
@@ -11,11 +11,12 @@ type Props = {
     returnPath: string;
     save: () => void;
     localisationPrefix: 'KOODI' | 'KOODISTO';
+    removeDialog: (close: () => void) => React.ReactNode;
 };
 
 const contentStyle = { width: '300px' };
 
-export const Footer: React.FC<Props> = ({ returnPath, save, localisationPrefix, children }) => {
+export const Footer: React.FC<Props> = ({ returnPath, save, localisationPrefix, removeDialog }) => {
     const navigate = useNavigate();
     return (
         <FooterContainer>
@@ -39,7 +40,7 @@ export const Footer: React.FC<Props> = ({ returnPath, save, localisationPrefix, 
                     }
                     {...{ contentStyle }}
                 >
-                    {children}
+                    {removeDialog}
                 </Popup>
             </FooterLeftContainer>
             <FooterRightContainer>
