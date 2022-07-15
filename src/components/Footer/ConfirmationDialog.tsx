@@ -26,11 +26,13 @@ const ContentWrapper = styled.div`
 export const ConfirmationDialog: React.FC<{
     close?: () => void;
     action: () => void;
-    msgkey: MessageDescriptor;
+    confirmationMessage: MessageDescriptor;
+    buttonText: MessageDescriptor;
     children: JSX.Element;
-}> = ({ close, action, msgkey, children }) => {
+}> = ({ close, action, confirmationMessage, buttonText, children }) => {
     const [confirmed, setConfirmed] = React.useState<boolean>(false);
     const toggle = () => setConfirmed(!confirmed);
+    // id="VAHVISTA_POISTO" defaultMessage={'Vahvista poisto'}
     return (
         <ContentWrapper>
             <CloseWrapper id="close-dialog" role="button" onClick={close}>
@@ -38,12 +40,12 @@ export const ConfirmationDialog: React.FC<{
             </CloseWrapper>
             {children}
             <p>
-                <input name="REMOVE_CONFIRMATION" type="checkbox" onChange={toggle} checked={confirmed} />
-                <FormattedMessage {...msgkey} />
+                <input name="CONFIRMATION_CHECK" type="checkbox" onChange={toggle} checked={confirmed} />
+                <FormattedMessage {...confirmationMessage} />
             </p>
             <ButtonWrapper>
-                <Button name="REMOVE_ACTION" onClick={action} disabled={!confirmed}>
-                    <FormattedMessage id="VAHVISTA_POISTO" defaultMessage={'Vahvista poisto'} />
+                <Button name="CONFIRMATION_ACTION" onClick={action} disabled={!confirmed}>
+                    <FormattedMessage {...buttonText} />
                 </Button>
             </ButtonWrapper>
         </ContentWrapper>

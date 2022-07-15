@@ -113,6 +113,12 @@
   "KOODISTO_TALLENNUS_MESSAGE_TITLE": {
     "defaultMessage": "Koodisto tallennettiin onnistuneesti."
   },
+  "KOODISTO_VERSIOI_DESCRIPTION": {
+    "defaultMessage": "Koodistosta ja kaikista sen koodeista luodaan uusi versio"
+  },
+  "KOODISTO_VERSIOI_TITLE": {
+    "defaultMessage": "Versioi koodisto"
+  },
   "KOODIVERSIO_DROPDOWN": {
     "defaultMessage": "Koodiversio"
   },
@@ -139,6 +145,12 @@
   },
   "KOODI_TAULUKKO_FILTTERI_PLACEHOLDER": {
     "defaultMessage": "Hae nimellä tai koodiarvolla"
+  },
+  "KOODI_VERSIOI_DESCRIPTION": {
+    "defaultMessage": "Koodista luodaan uusi versio"
+  },
+  "KOODI_VERSIOI_TITLE": {
+    "defaultMessage": "Versioi koodi"
   },
   "KOPIOI_MUIHIN_KIELIIN": {
     "defaultMessage": "Kopioi muihin kieliin"
@@ -271,9 +283,6 @@
   },
   "TAULUKKO_VOIMASSA_LOPPU_PVM_OTSIKKO": {
     "defaultMessage": "Voimassa asti"
-  },
-  "VAHVISTA_POISTO": {
-    "defaultMessage": "Vahvista poisto"
   },
   "VERSIO_DROPDOWN_LABEL": {
     "defaultMessage": "Versio {versio}"

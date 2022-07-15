@@ -211,6 +211,33 @@ export const KoodistoMuokkausPage: React.FC = () => {
                 returnPath={(koodistoUri && `/koodisto/view/${koodistoUri}/${versio}`) || '/'}
                 save={handleSubmit((a) => save(a))}
                 localisationPrefix={'KOODISTO'}
+                versionDialog={(close: () => void) => (
+                    <ConfirmationDialog
+                        action={() => {
+                            console.log('Not implemented...');
+                            close();
+                        }}
+                        close={close}
+                        confirmationMessage={{
+                            id: 'KOODISTO_VERSIOI_CONFIRMATION',
+                            defaultMessage: 'Kyllä, versioidaan koodisto ja sen kaikki koodit',
+                        }}
+                        buttonText={{ id: 'VAHVISTA_VERSIOINTI', defaultMessage: 'Vahvista versiointi' }}
+                    >
+                        <>
+                            <FormattedMessage
+                                id={'KOODISTO_VERSIOI_TITLE'}
+                                defaultMessage={'Versioi koodisto'}
+                                tagName={'h2'}
+                            />
+                            <FormattedMessage
+                                id={'KOODISTO_VERSIOI_DESCRIPTION'}
+                                defaultMessage={'Koodistosta ja kaikista sen koodeista luodaan uusi versio'}
+                                tagName={'p'}
+                            />
+                        </>
+                    </ConfirmationDialog>
+                )}
                 removeDialog={(close: () => void) => (
                     <ConfirmationDialog
                         action={() => {
@@ -218,11 +245,12 @@ export const KoodistoMuokkausPage: React.FC = () => {
                             close();
                         }}
                         close={close}
-                        msgkey={{
+                        confirmationMessage={{
                             id: 'KOODISTO_POISTA_CONFIRMATION',
                             defaultMessage:
                                 'Kyllä, koodisto sekä kaikki koodit ja koodistojen suhteet poistetaan lopullisesti',
                         }}
+                        buttonText={{ id: 'VAHVISTA_POISTO', defaultMessage: 'Vahvista poisto' }}
                     >
                         <>
                             <FormattedMessage

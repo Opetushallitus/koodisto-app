@@ -168,6 +168,33 @@ const KoodiMuokkausPageComponent: React.FC<
                 returnPath={(koodiUri && `/koodi/view/${koodiUri}/${koodiVersio}`) || '/'}
                 save={handleSubmit((a) => save(a))}
                 localisationPrefix={'KOODI'}
+                versionDialog={(close: () => void) => (
+                    <ConfirmationDialog
+                        action={() => {
+                            console.log('Not implemented...');
+                            close();
+                        }}
+                        close={close}
+                        confirmationMessage={{
+                            id: 'KOODI_VERSIOI_CONFIRMATION',
+                            defaultMessage: 'Kyllä, versioidaan koodi',
+                        }}
+                        buttonText={{ id: 'VAHVISTA_VERSIOINTI', defaultMessage: 'Vahvista versiointi' }}
+                    >
+                        <>
+                            <FormattedMessage
+                                id={'KOODI_VERSIOI_TITLE'}
+                                defaultMessage={'Versioi koodi'}
+                                tagName={'h2'}
+                            />
+                            <FormattedMessage
+                                id={'KOODI_VERSIOI_DESCRIPTION'}
+                                defaultMessage={'Koodista luodaan uusi versio'}
+                                tagName={'p'}
+                            />
+                        </>
+                    </ConfirmationDialog>
+                )}
                 removeDialog={(close: () => void) => (
                     <ConfirmationDialog
                         action={() => {
@@ -175,7 +202,11 @@ const KoodiMuokkausPageComponent: React.FC<
                             close();
                         }}
                         close={close}
-                        msgkey={{ id: 'KOODI_POISTA_CONFIRMATION', defaultMessage: 'Kyllä, poista koodi lopullisesti' }}
+                        confirmationMessage={{
+                            id: 'KOODI_POISTA_CONFIRMATION',
+                            defaultMessage: 'Kyllä, poista koodi lopullisesti',
+                        }}
+                        buttonText={{ id: 'VAHVISTA_POISTO', defaultMessage: 'Vahvista poisto' }}
                     >
                         <>
                             <FormattedMessage

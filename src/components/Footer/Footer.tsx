@@ -11,22 +11,31 @@ type Props = {
     returnPath: string;
     save: () => void;
     localisationPrefix: 'KOODI' | 'KOODISTO';
+    versionDialog: (close: () => void) => React.ReactNode;
     removeDialog: (close: () => void) => React.ReactNode;
 };
 
 const contentStyle = { width: '300px' };
 
-export const Footer: React.FC<Props> = ({ returnPath, save, localisationPrefix, removeDialog }) => {
+export const Footer: React.FC<Props> = ({ returnPath, save, localisationPrefix, versionDialog, removeDialog }) => {
     const navigate = useNavigate();
     return (
         <FooterContainer>
             <FooterLeftContainer>
-                <Button variant={'outlined'} name={`${localisationPrefix}_VERSIOI`}>
-                    <FormattedMessage
-                        id={`${localisationPrefix}_VERSIOI`}
-                        defaultMessage={`Versioi ${localisationPrefix.toLowerCase()}`}
-                    />
-                </Button>
+                <Popup
+                    position="top left"
+                    trigger={
+                        <Button variant={'outlined'} name={`${localisationPrefix}_VERSIOI`}>
+                            <FormattedMessage
+                                id={`${localisationPrefix}_VERSIOI`}
+                                defaultMessage={`Versioi ${localisationPrefix.toLowerCase()}`}
+                            />
+                        </Button>
+                    }
+                    {...{ contentStyle }}
+                >
+                    {versionDialog}
+                </Popup>
                 <Popup
                     position="top left"
                     trigger={
